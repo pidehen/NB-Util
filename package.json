@@ -1,0 +1,34 @@
+{
+  "name": "nb-util",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:cleanup": "rimraf -rf dist",
+    "build:uglify": "uglifyjs dist/NB-Util.js -m -o dist/NB-Util.min.js",
+    "build:compile": "cnpm run build:cleanup && babel src -d dist",
+    "build:pro": "cnpm run build:compile && cnpm run build:uglify"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-class-properties"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pidehen/NB-Util.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pidehen/NB-Util/issues"
+  },
+  "homepage": "https://github.com/pidehen/NB-Util#readme",
+  "devDependencies": {
+    "uglify-js": "^3.0.24"
+  }
+}
