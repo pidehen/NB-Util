@@ -66,10 +66,51 @@ Q.test('检测是否是数组或类数组对象', function (assert) {
 
   assert.ok(U.likeArray([]), '[]是数组');
   testArgument(10);
-  console.log(classList);
   assert.ok(U.likeArray(els), 'NodeList是类数组');
   assert.ok(U.likeArray(classList), 'ClassList是类数组');
   assert.notOk(U.likeArray('aa'), '\'aa\'不应该是类数组');
   assert.notOk(U.likeArray(function g () {}), 'g不应该是类数组');
   assert.notOk(U.likeArray(window), 'window不应该是类数组');
+});
+
+Q.test('转换成数组', function (assert) {
+  var obj;
+  (obj = {
+    0: 'name',
+    1: 'age'
+  }).length = 2;
+
+  function testArgument () {
+    assert.strictEqual(U.getType(U.toArray(arguments)), 'array');
+  }
+  var els = document.querySelectorAll('#qunit-header');
+  var classList = els[0].classList;
+
+  assert.strictEqual(U.getType(U.toArray(obj)), 'array');
+  assert.strictEqual(U.getType(U.toArray([])), 'array');
+  testArgument();
+  assert.strictEqual(U.getType(U.toArray(els)), 'array');
+  assert.strictEqual(U.getType(U.toArray(classList)), 'array');
+});
+
+Q.test('对象拷贝', function (assert) {
+  var origin1 = {
+    name: 'a'
+  };
+  var origin2 = {
+    age: 21
+  };
+  var origin3 = {
+    xm: origin1
+  };
+  var origin4 = {
+    xh: origin2
+  };
+  var target = {};
+  assert.propEqual(U.copy({}, origin1, origin2), { name: 'a', age: 21 });
+  assert.propEqual(U.copy({}, origin3, origin4), { xm: origin3.xm, xh: origin4.xh });
+  var notDeepTarget = U.copy({}, origin3, origin4);
+  var deepTarget = U.copy({}, origin3, origin4, true);
+  assert.strictEqual(notDeepTarget.xm, origin3.xm);
+  assert.noStrictEqual(deepTarget.xm, origin3.xm);
 });
