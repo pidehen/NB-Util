@@ -112,5 +112,5 @@ Q.test('对象拷贝', function (assert) {
   var notDeepTarget = U.copy({}, origin3, origin4);
   var deepTarget = U.copy({}, origin3, origin4, true);
   assert.strictEqual(notDeepTarget.xm, origin3.xm);
-  assert.noStrictEqual(deepTarget.xm, origin3.xm);
+  assert.notStrictEqual(deepTarget.xm, origin3.xm);
 });
