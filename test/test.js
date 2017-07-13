@@ -34,7 +34,7 @@ Q.test('检测是否是纯对象', function (assert) {
   function Person () {}
   var person = new Person;
   var el = document.querySelector('div');
-  assert.notOk(U.isPlainObject(person), 'person不应该是纯对象')
+  assert.notOk(U.isPlainObject(person), 'person不应该是纯对象');
   assert.notOk(U.isPlainObject([]), '[]不应该是纯对象');
   assert.notOk(U.isPlainObject(el), 'el不应该是纯对象');
 });
