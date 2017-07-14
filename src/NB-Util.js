@@ -106,7 +106,7 @@
   };
 
   if (typeof define === 'function' && define.amd) {
-    define(() => util);
+    define(() => NBUtil);
   } else {
     window.NBUtil = NBUtil;
   }
