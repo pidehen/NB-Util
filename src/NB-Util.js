@@ -65,7 +65,7 @@
 
       for (i = 0, ret = [], len = collection.length; i < len; i++) {
         key = collection[i];
-        process(obj[key], key, obj, ret);
+        process(fn, obj[key], key, obj, ret);
       }
 
       return NBUtil.flatten(ret);
@@ -83,8 +83,9 @@
 
       for (i = 0, len = copys.length; i < len; i++) {
         let copy = copys[i];
+        let type = this.getType(copy);
 
-        if (this.isPlainObject(copy)) {
+        if (type !== 'number' && type !== 'boolean' && type !== 'string') {
           let key, value, isArray, isObject;
 
           for (key in copy) {
